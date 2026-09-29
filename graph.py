@@ -1,3 +1,5 @@
+import torch
+
 def literal_to_node(literal, num_vars):
     if literal > 0:
         return literal - 1
@@ -27,7 +29,12 @@ edges = []
 for clause_index, clause in enumerate(clauses):
     for literal in clause:
         node_index = literal_to_node(literal, num_vars)
-        edges.append((node_index, clause_index))
+        edges.append((node_index, 2 * num_vars + clause_index))
 
 for edge in edges:
     print(edge)
+
+edge_index = torch.tensor(edges, dtype=torch.long).t()
+
+print(edge_index)
+print(edge_index.shape)
