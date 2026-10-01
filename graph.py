@@ -38,3 +38,18 @@ edge_index = torch.tensor(edges, dtype=torch.long).t()
 
 print(edge_index)
 print(edge_index.shape)
+
+num_nodes = 2 * num_vars + num_clauses
+
+x = torch.zeros((num_nodes, 3))
+print(x)
+
+for i in range(num_nodes):
+    if i < num_vars:
+        x[i][0] = 1
+
+    elif i < 2 * num_vars:
+        x[i][1] = 1
+
+    else:
+        x[i][2] = 1
